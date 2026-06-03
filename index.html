@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Open Social Network Official Page</title>
+    <meta
+      name="description"
+      content="The official Open Social Network page: own your identity, write posts, and publish anywhere on the web."
+    />
+    <link rel="icon" type="image/png" href="./assets/open-social-network-logo.png" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="alternate" type="application/json" href="./profile.json" title="Open Social Network profile" />
+    <link rel="alternate" type="application/json" href="./feed.json" title="Open Social Network feed" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <section class="banner-section" aria-label="Open Social Network">
+        <picture>
+          <source media="(max-width: 720px)" srcset="./assets/open-social-network-banner-small.png" />
+          <img
+            src="./assets/open-social-network-banner.png"
+            alt="The open social layer of the internet."
+            class="hero-banner"
+          />
+        </picture>
+      </section>
+
+      <section class="profile-hero">
+        <img
+          src="./assets/open-social-network-profile.png"
+          alt=""
+          class="profile-avatar"
+          data-profile-avatar
+        />
+        <div class="profile-copy">
+          <p class="network-label">Official page</p>
+          <h1 data-profile-name>Loading profile</h1>
+          <p class="profile-handle" data-profile-handle></p>
+          <p data-profile-bio></p>
+          <div class="profile-links">
+            <a href="https://github.com/Open-Social-Network" data-profile-website>GitHub</a>
+          </div>
+          <details class="technical-details">
+            <summary>Technical details</summary>
+            <a href="./profile.json">Profile file</a>
+            <a href="./feed.json">Feed file</a>
+            <a href="./.well-known/open-social-network.json">Discovery file</a>
+          </details>
+        </div>
+      </section>
+
+      <section class="principles-section" aria-label="Open Social Network values">
+        <article>
+          <strong>You own your page</strong>
+          <span>Your social identity can live on a site you control.</span>
+        </article>
+        <article>
+          <strong>Posts are verified</strong>
+          <span>Readers can check that posts came from the page owner.</span>
+        </article>
+        <article>
+          <strong>Aggregators are optional</strong>
+          <span>Use any reader, browser, or app that understands the protocol.</span>
+        </article>
+        <article>
+          <strong>Host anywhere</strong>
+          <span>GitHub, Cloudflare, Netlify, Vercel, S3, or your own server.</span>
+        </article>
+      </section>
+
+      <section class="feed-section">
+        <div class="section-header">
+          <div>
+            <h2>Posts</h2>
+            <p>Posts published from this page and verified locally.</p>
+          </div>
+          <span data-verification-status>Checking</span>
+        </div>
+        <div class="post-list" data-posts></div>
+      </section>
+    </main>
+
+    <script type="module" src="./page.js"></script>
+  </body>
+</html>

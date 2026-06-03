@@ -1,0 +1,27 @@
+{
+  "protocol": "open-social-network",
+  "version": "0.1",
+  "handle": "official@open-social-network.network",
+  "name": "Open Social Network",
+  "bio": "The official Open Social Network page: own your identity, write posts, and publish anywhere on the web.",
+  "avatar": "./assets/open-social-network-profile.png",
+  "website": "https://github.com/Open-Social-Network",
+  "publicKey": {
+    "alg": "ES256",
+    "jwk": {
+      "kty": "EC",
+      "crv": "P-256",
+      "x": "zy7xhsv7q6OQ3SuFbpQ4-ntX8LrEY8FR_eovBd6inD0",
+      "y": "i0iX-3YJoN57lL6-CNfVzqTiqor-GdZdUMo8QyAwclk",
+      "ext": true,
+      "key_ops": [
+        "verify"
+      ]
+    }
+  },
+  "endpoints": {
+    "profile": "https://open-social-network.github.io/profile.json",
+    "feed": "https://open-social-network.github.io/feed.json",
+    "avatar": "./assets/open-social-network-profile.png"
+  }
+}

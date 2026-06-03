@@ -1,0 +1,37 @@
+{
+  "protocol": "open-social-network",
+  "version": "0.1",
+  "author": "official@open-social-network.network",
+  "posts": [
+    {
+      "id": "post_001",
+      "author": "official@open-social-network.network",
+      "createdAt": "2026-06-03T20:58:17.572Z",
+      "content": "Open Social Network begins here: a page you own, posts you control, and a social web that does not depend on one platform.",
+      "signature": {
+        "alg": "ES256",
+        "value": "NEAmD8XHVKjA8lB_C3dRtvlDRYrYHVsoEBO58yqzahpL9SKgUbH5uujUMzue5LCM1Q-MwFZFPjvuqv6sLDzSBg"
+      }
+    },
+    {
+      "id": "post_002",
+      "author": "official@open-social-network.network",
+      "createdAt": "2026-06-03T20:58:17.620Z",
+      "content": "Create a page, write posts, publish the public folder anywhere, and let any compatible app read it.",
+      "signature": {
+        "alg": "ES256",
+        "value": "tQLIOp3tMkKe1yy3CNG1bHgDHmO-e9AsBtjIrea3IClZtmux4S8GoBl9JGQpMXuFuUpb_vcYiTTO-rryXOkLpQ"
+      }
+    },
+    {
+      "id": "post_003",
+      "author": "official@open-social-network.network",
+      "createdAt": "2026-06-03T20:58:17.668Z",
+      "content": "Our values are sovereignty, portability, interoperability, transparency, and a web where identity belongs to its creator.",
+      "signature": {
+        "alg": "ES256",
+        "value": "hSUYDlvxhtYFBm6U8HtJy8vFbLn6yLu1qBpQlRdxXxHCvOkPSxu-wic8xR0cMCejFBa2xwxnCrm5LzoITLrEhg"
+      }
+    }
+  ]
+}
