@@ -68,33 +68,39 @@ a {
 }
 
 .profile-hero {
+  position: relative;
+  z-index: 2;
   display: grid;
   grid-template-columns: 128px minmax(0, 1fr);
   gap: 28px;
-  align-items: center;
-  margin: 20px 0 18px;
-  padding: 30px;
+  align-items: start;
+  margin: -28px 0 18px;
+  padding: 34px 30px 28px;
   border: 1px solid var(--border);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.92)),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(239, 246, 255, 0.94)),
     var(--paper);
   box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
 }
 
 .profile-avatar {
   display: block;
   width: 128px;
   height: 128px;
-  border: 1px solid #c8d7f4;
+  margin-top: -46px;
+  border: 4px solid #ffffff;
   border-radius: 8px;
   background: linear-gradient(135deg, #eef2ff, #e6fbfd);
+  box-shadow: 0 18px 42px rgba(37, 49, 83, 0.18);
   object-fit: contain;
   padding: 14px;
 }
 
 .profile-copy {
   min-width: 0;
+  padding-top: 2px;
 }
 
 .network-label,
@@ -118,11 +124,11 @@ a {
 }
 
 .profile-hero h1 {
-  max-width: 11ch;
+  max-width: 13ch;
   margin-top: 8px;
   color: var(--ink-strong);
-  font-size: clamp(2.45rem, 5vw, 4.8rem);
-  line-height: 0.98;
+  font-size: clamp(2.3rem, 4.4vw, 4.25rem);
+  line-height: 1.02;
   text-wrap: balance;
 }
 
@@ -299,13 +305,14 @@ a {
   .profile-hero {
     grid-template-columns: 1fr;
     gap: 16px;
-    margin: 14px 0;
-    padding: 20px;
+    margin: -24px 0 14px;
+    padding: 18px 20px 22px;
   }
 
   .profile-avatar {
-    width: 92px;
-    height: 92px;
+    width: 88px;
+    height: 88px;
+    margin-top: -10px;
     padding: 10px;
   }
 
