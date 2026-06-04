@@ -4,6 +4,7 @@ const profileHandle = document.querySelector('[data-profile-handle]');
 const profileAvatar = document.querySelector('[data-profile-avatar]');
 const profileWebsite = document.querySelector('[data-profile-website]');
 const postsRoot = document.querySelector('[data-posts]');
+const followsRoot = document.querySelector('[data-follows]');
 const verificationStatus = document.querySelector('[data-verification-status]');
 
 await boot();
@@ -12,6 +13,12 @@ async function boot() {
   try {
     const profile = await fetchJson('./profile.json');
     const feed = await fetchJson('./feed.json');
+    const followList = await fetchOptionalJson('./opensocial/follows/index.json', {
+      protocol: 'open-social-network',
+      version: '0.1',
+      owner: profile.handle,
+      follows: [],
+    });
     const verifiedPosts = [];
 
     profileName.textContent = profile.name;
@@ -19,6 +26,7 @@ async function boot() {
     profileBio.textContent = profile.bio || profile.handle;
     setProfileAvatar(profile);
     setProfileWebsite(profile);
+    followsRoot.innerHTML = renderProfileFollows(followList, profile.handle);
 
     for (const post of feed.posts) {
       if (await verifyPost(post, profile)) {
@@ -53,6 +61,14 @@ function setProfileWebsite(profile) {
 
   profileWebsite.href = profile.website;
   profileWebsite.textContent = new URL(profile.website).host;
+}
+
+async function fetchOptionalJson(url, fallback) {
+  try {
+    return await fetchJson(url);
+  } catch {
+    return fallback;
+  }
 }
 
 async function fetchJson(url) {
@@ -143,6 +159,59 @@ function base64UrlToBytes(value) {
   return bytes.buffer;
 }
 
+function renderProfileFollows(followList, owner) {
+  const follows = normalizeFollows(followList, owner);
+
+  if (follows.length === 0) {
+    return '<p class="empty-state">Not following anyone yet.</p>';
+  }
+
+  return `
+    <div class="follow-count">${formatCount(follows.length, 'page')}</div>
+    <div class="follow-list">
+      ${follows
+        .map(
+          (follow) => `
+            <a class="follow-card" href="${escapeHtml(follow.profile)}">
+              <strong>${escapeHtml(follow.handle || readableProfileName(follow.profile))}</strong>
+              <span>${escapeHtml(readableProfileName(follow.profile))}</span>
+            </a>
+          `,
+        )
+        .join('')}
+    </div>
+  `;
+}
+
+function normalizeFollows(followList, owner) {
+  if (
+    followList?.protocol !== 'open-social-network' ||
+    followList.version !== '0.1' ||
+    followList.owner !== owner ||
+    !Array.isArray(followList.follows)
+  ) {
+    return [];
+  }
+
+  const followsByProfile = new Map();
+
+  for (const follow of followList.follows) {
+    const profile = typeof follow?.profile === 'string' ? follow.profile.trim() : '';
+    const handle = typeof follow?.handle === 'string' ? follow.handle.trim() : '';
+
+    if (!profile || followsByProfile.has(profile)) {
+      continue;
+    }
+
+    followsByProfile.set(profile, {
+      profile,
+      ...(handle ? { handle } : {}),
+    });
+  }
+
+  return [...followsByProfile.values()];
+}
+
 function renderPosts(posts) {
   if (posts.length === 0) {
     return '<p class="empty-state">No verified posts yet.</p>';
@@ -162,6 +231,19 @@ function renderPosts(posts) {
       `,
     )
     .join('');
+}
+
+function formatCount(count, singular) {
+  return `${count} ${count === 1 ? singular : `${singular}s`}`;
+}
+
+function readableProfileName(value) {
+  try {
+    const url = new URL(value);
+    return url.host.replace(/^www\./u, '');
+  } catch {
+    return value;
+  }
 }
 
 function formatDate(value) {

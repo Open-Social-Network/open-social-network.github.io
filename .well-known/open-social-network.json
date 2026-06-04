@@ -22,6 +22,18 @@
   "endpoints": {
     "profile": "https://open-social-network.github.io/profile.json",
     "feed": "https://open-social-network.github.io/feed.json",
-    "avatar": "./assets/open-social-network-profile.png"
+    "avatar": "./assets/open-social-network-profile.png",
+    "actions": "https://open-social-network.github.io/opensocial/actions/inbox/index.json",
+    "messages": "https://open-social-network.github.io/opensocial/messages/inbox/index.json"
+  },
+  "messagePublicKey": {
+    "alg": "ECDH-P256",
+    "jwk": {
+      "ext": true,
+      "kty": "EC",
+      "x": "k1nb2zhbZJYaAkhXRzYNGsr8L65vTWzZrx6R__nRQ8I",
+      "y": "u-U6PGUniTXHMPkB7t_RZDAV6Tp4sH5GVI749-HghrY",
+      "crv": "P-256"
+    }
   }
 }
